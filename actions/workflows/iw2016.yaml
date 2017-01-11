@@ -1,7 +1,7 @@
 ---
 version: '2.0'
 
-default.iw2016:
+jpdemo.iw2016:
   input:
     - host
     - command
@@ -31,7 +31,7 @@ default.iw2016:
         - error_message
     ticket_open:
       # [115, 230]
-      action: default.NewTicket
+      action: jpdemo.NewTicket
       input:
         subject: <% $.subject %>
         description: <% $.description %>

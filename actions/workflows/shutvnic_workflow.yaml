@@ -1,7 +1,7 @@
 ---
 version: '2.0'
 
-default.shutvnic_workflow:
+jpdemo.shutvnic_workflow:
   input:
     - host
     - user
@@ -11,7 +11,7 @@ default.shutvnic_workflow:
   tasks:
     list:
       # [235, 26]
-      action: default.listvnic
+      action: jpdemo.listvnic
       input:
         host: <% $.host %>
         user: <% $.user %>
@@ -26,7 +26,7 @@ default.shutvnic_workflow:
         - bad
     shut:
       # [115, 128]
-      action: default.shutvnicselect
+      action: jpdemo.shutvnicselect
       input:
         host: <% $.host %>
         user: <% $.user %>
