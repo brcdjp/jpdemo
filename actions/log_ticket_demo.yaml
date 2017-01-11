@@ -1,5 +1,5 @@
 description: A Logging and Create Ticket Demo
-pack: default
+pack: jpdemo
 name: log_ticket_demo
 enabled: true
 entry_point: "workflows/log_ticket_demo.yaml"

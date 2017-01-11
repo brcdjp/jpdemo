@@ -1,5 +1,5 @@
 description: A simple action chain example
-pack: default
+pack: jpdemo
 name: simple
 enabled: true
 entry_point: "chains/sample_action_chain.yaml"

@@ -1,5 +1,5 @@
 description: A simple mistral example
-pack: default
+pack: jpdemo
 name: simple_mistral
 enabled: true
 entry_point: "workflows/sample_mistral.yaml"
