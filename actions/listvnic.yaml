@@ -1,0 +1,27 @@
+description: 'List all vNICs of the VM'
+enabled: true
+entry_point: listvnic.py
+name: listvnic
+runner_type: 'python-script'
+parameters:
+  host:
+    description: 'IP address of vSphere'
+    type: 'string'
+    required: true
+  user:
+    description: 'User name for vSphere'
+    type: 'string'
+    required: true
+  password:
+    description: 'Password for vSphere'
+    type: 'string'
+    required: true
+  port:
+    description: 'Port number of vSphere'
+#    type: 'integer'
+    type: 'string'
+    default: "443"
+  vmname:
+    description: 'VM name'
+    type: 'string'
+    required: true

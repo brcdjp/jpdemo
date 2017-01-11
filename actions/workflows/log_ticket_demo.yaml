@@ -1,0 +1,54 @@
+---
+version: '2.0'
+
+default.log_ticket_demo:
+  input:
+    - cmd
+    - host
+    - subject
+  tasks:
+    log_upload:
+      # [255, 26]
+      action: default.cli
+      input:
+        host: <% $.host %>
+        cmd: "copy running-config scp://root:password@172.24.198.212//var/www/html/test/<% $.subject %>"
+      on-success:
+        - sh_cmd
+      on-error:
+        - Alart_msg
+    sh_cmd:
+      # [185, 128]
+      action: default.cli
+      input:
+        host: <% $.host %>
+        cmd: <% $.cmd %>
+      publish:
+        description: '<% task(sh_cmd).result.result %>'
+      on-success:
+        - open_ticket
+      on-error:
+        - Alart_msg
+    open_ticket:
+      # [115, 230]
+      action: default.NewTicket
+      input:
+        subject: <% $.subject %>
+        description: <% $.description %>
+      on-success:
+        - Notify_msg
+      on-error:
+        - Alart_msg
+    Notify_msg:
+      # [105, 332]
+      action: slack.chat.postMessage
+      input:
+        channel: random
+        text: "\n ticket opened <% $.subject %> \n"
+    Alart_msg:
+      # [375, 332]
+      action: slack.chat.postMessage
+      input:
+        channel: random
+        text: "\n failed <% $.subject %> \n"
+

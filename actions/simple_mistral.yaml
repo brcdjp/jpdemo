@@ -1,0 +1,12 @@
+description: A simple mistral example
+pack: default
+name: simple_mistral
+enabled: true
+entry_point: "workflows/sample_mistral.yaml"
+runner_type: mistral-v2
+parameters:
+  foo:
+    type: string
+    required: true
+    description: A name to echo out
+

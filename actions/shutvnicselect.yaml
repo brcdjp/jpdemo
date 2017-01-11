@@ -1,0 +1,33 @@
+description: 'Shut selected vNICs of the VM'
+enabled: true
+entry_point: shutvnicselect.py
+name: shutvnicselect
+runner_type: 'python-script'
+parameters:
+  host:
+    description: 'IP address of vSphere'
+    type: 'string'
+    required: true
+  user:
+    description: 'User name for vSphere'
+    type: 'string'
+    required: true
+  password:
+    description: 'Password for vSphere'
+    type: 'string'
+    required: true
+  port:
+    description: 'Port number of vSphere'
+    type: 'string'
+    #type: 'integer'
+    default: 443
+  vmname:
+    description: 'VM name'
+    type: 'string'
+    required: true
+  vnics:
+    description: 'Names of vNICs to shut'
+    type: 'array'
+    items:
+      type: 'string'
+    required: true

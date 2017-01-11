@@ -1,0 +1,53 @@
+---
+version: '2.0'
+
+default.workflow_shutvnic2:
+  input:
+    - host
+    - user
+    - password
+    - port
+    - vmname
+  tasks:
+    list:
+      # [235, 26]
+      action: default.listvnic
+      input:
+        host: <% $.host %>
+        user: <% $.user %>
+        password: <% $.password %>
+        port: <% $.port %>
+        vmname: <% $.vmname %>
+      publish:
+        vnics: <% task(list).result.result %>
+      on-success:
+        - shutvnic
+      on-error:
+        - bad
+    shutvnic:
+      # [115, 128]
+      action: default.shutvnicselect
+      input:
+        host: <% $.host %>
+        user: <% $.user %>
+        password: <% $.password %>
+        port: <% $.port %>
+        vmname: <% $.vmname %>
+        vnics: <% $.vnics %>
+      on-success:
+        - good
+      on-error:
+        - bad
+    good:
+      # [105, 230]
+      action: slack.chat.postMessage
+      input:
+        channel: random
+        text: "\nPort Down by stackstorm\n."
+    bad:
+      # [365, 230]
+      action: slack.chat.postMessage
+      input:
+        channel: random
+        text: "Fail to port down"
+

@@ -1,0 +1,15 @@
+description: 'cli'
+enabled: true
+entry_point: cli.py
+name: cli
+parameters:
+  cmd:
+    description: "operation command"
+    type: string
+    required: true
+  host:
+    description: "IP of VDX"
+    type: string
+    default: 172.24.198.98
+runner_type: "python-script"
+

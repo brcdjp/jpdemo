@@ -1,0 +1,14 @@
+description: 'Create a ticket in Redmine'
+enabled: true
+entry_point: redmineactions.py
+name: NewTicket
+runner_type: 'python-script'
+parameters:
+  subject:
+    description: 'Subject of ticket'
+    type: 'string'
+    required: true
+  description:
+    description: 'Description of ticket'
+    type: 'string'
+    required: true

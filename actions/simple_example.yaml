@@ -1,0 +1,11 @@
+description: A simple action chain example
+pack: default
+name: simple
+enabled: true
+entry_point: "chains/sample_action_chain.yaml"
+runner_type: action-chain
+parameters: 
+  name:
+    type: string
+    required: true
+    description: A name to echo out

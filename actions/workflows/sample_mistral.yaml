@@ -1,0 +1,35 @@
+---
+version: '2.0'
+
+default.simple_mistral:
+  input:
+    - foo
+  tasks:
+    task1:
+      # [235, 26]
+      action: core.local
+      input:
+        cmd: "date >> /tmp/<% $.foo %>"
+      on-success:
+        - task2
+        - task3
+    task2:
+      # [105, 128]
+      action: core.local
+      input:
+        cmd: "echo task2 >> /tmp/<% $.foo %> ; date >> /tmp/<% $.foo %>"
+      on-success:
+        - task4
+    task3:
+      # [365, 128]
+      action: core.local
+      input:
+        cmd: "echo task3 >> /tmp/<% $.foo %> ; date >> /tmp/<% $.foo %>"
+      on-success:
+        - task4
+    task4:
+      # [235, 230]
+      join: all
+      action: core.local
+      input:
+        cmd: "echo task4 >> /tmp/<% $.foo %> ; date >> /tmp/<% $.foo %>"

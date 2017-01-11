@@ -1,0 +1,51 @@
+---
+version: '2.0'
+
+default.vcpe_switch2:
+  input:
+    - path
+  tasks:
+    update_bgp:
+      # [235, 26]
+      action: core.local
+      input:
+        cwd: /home/ubuntu/script
+        cmd: ./rest-set-from-file.py <% $.path %>
+      on-success:
+        - refresh_route
+    refresh_route:
+      # [235, 128]
+      action: core.local
+      input:
+        cwd: /home/ubuntu/script
+        cmd: ./reset_bgp.sh
+      on-success:
+        - validation_vcpe
+        - validation_Internet
+    validation_vcpe:
+      # [105, 230]
+      action: vR5600_utils.show_ip_route_subnet
+      input:
+        deviceIP: 172.24.198.77
+        subnet: '0.0.0.0/0'
+      publish:
+        vcpe_route: <% task(validation_vcpe).result.stdout %>
+      on-success:
+        - notify_route
+    validation_Internet:
+      # [365, 230]
+      action: vR5600_utils.show_ip_route_subnet
+      input:
+        deviceIP: 172.24.198.96
+        subnet: '192.168.4.0/24'
+      publish:
+        internet_route: <% task(validation_Internet).result.stdout %>
+      on-success:
+        - notify_route
+    notify_route:
+      join: all
+      # [235, 332]
+      action: slack.chat.postMessage
+      input:
+        channel: random
+        text: <% $.vcpe_route %>

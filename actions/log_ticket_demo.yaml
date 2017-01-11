@@ -1,0 +1,19 @@
+description: A Logging and Create Ticket Demo
+pack: default
+name: log_ticket_demo
+enabled: true
+entry_point: "workflows/log_ticket_demo.yaml"
+runner_type: mistral-v2
+parameters:
+  cmd:
+    type: string
+    required: true
+    description: A command of VDX
+  host:
+    type: string
+    required: true
+    description: VDX address
+  subject:
+    type: string
+    required: true
+    description: Ticket title
