@@ -9,7 +9,7 @@ default.log_ticket_demo:
   tasks:
     log_upload:
       # [255, 26]
-      action: default.cli
+      action: jpdemo.cli
       input:
         host: <% $.host %>
         cmd: "copy running-config scp://root:password@172.24.198.212//var/www/html/test/<% $.subject %>"
@@ -19,7 +19,7 @@ default.log_ticket_demo:
         - Alart_msg
     sh_cmd:
       # [185, 128]
-      action: default.cli
+      action: jpdemo.cli
       input:
         host: <% $.host %>
         cmd: <% $.cmd %>
@@ -31,7 +31,7 @@ default.log_ticket_demo:
         - Alart_msg
     open_ticket:
       # [115, 230]
-      action: default.NewTicket
+      action: jpdemo.NewTicket
       input:
         subject: <% $.subject %>
         description: <% $.description %>
