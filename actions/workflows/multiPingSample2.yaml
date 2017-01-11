@@ -1,0 +1,28 @@
+---
+version: '2.0'
+
+default.multiPingSample2:
+  tasks:
+    ping_1_1:
+      # [105, 128]
+      action: clicrud.ops_command
+      input:
+        host: "172.24.198.86"
+        command: "ping 172.24.198.1 vrf mgmt-vrf count 1 timeout 1"
+      publish:
+        ok_1_1: <% not task(ping_1_1).result.result =~ '100% packet loss' %>
+      on-complete:
+        - ping_1_2
+    ping_1_2:
+      # [105, 230]
+      action: clicrud.ops_command
+      input:
+        host: "172.24.198.86"
+        command: "ping 172.24.198.2 vrf mgmt-vrf count 1 timeout 1"
+      publish:
+        ok_1_2: <% not task(ping_1_2).result.result =~ '100% packet loss' %>
+    start:
+      # [105, 26]
+      action: core.noop
+      on-complete:
+        - ping_1_1

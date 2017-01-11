@@ -1,0 +1,25 @@
+description: 'Run ping on specified VDX'
+entry_point: remotePing.py
+name: remotePing
+runner_type: 'python-script'
+parameters:
+  host:
+    description: 'IP address of VDX to ping from'
+    type: 'string'
+    required: true
+  user:
+    description: 'User name to login as'
+    type: 'string'
+    required: true
+  password:
+    description: 'Password to login with'
+    type: 'string'
+    required: true
+  target:
+    description: 'Target IP address to ping'
+    type: 'string'
+    required: true
+  vrf:
+    description: 'VRF'
+    type: 'string'
+    default: 'mgmt-vrf'

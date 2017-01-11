@@ -1,0 +1,43 @@
+---
+version: '2.0'
+
+default.multiPingSample:
+  tasks:
+    ping_1_1:
+      # [105, 26]
+      action: default.remotePing
+      input:
+        host: '172.24.198.86'
+        user: 'admin'
+        password: 'password'
+        target: '172.24.198.1'
+      on-complete:
+        - ping_1_2
+    ping_1_2:
+      # [105, 128]
+      action: default.remotePing
+      input:
+        host: '172.24.198.86'
+        user: 'admin'
+        password: 'password'
+        target: '172.24.198.2'
+      on-complete:
+        - ping_2_1
+    ping_2_1:
+      # [105, 230]
+      action: default.remotePing
+      input:
+        host: '172.24.197.141'
+        user: 'admin'
+        password: 'password'
+        target: '172.24.198.1'
+      on-complete:
+        - ping_2_2
+    ping_2_2:
+      # [105, 332]
+      action: default.remotePing
+      input:
+        host: '172.24.197.141'
+        user: 'admin'
+        password: 'password'
+        target: '172.24.198.2'
