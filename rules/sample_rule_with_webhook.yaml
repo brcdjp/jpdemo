@@ -1,6 +1,6 @@
 ---
 name: "sample_rule_with_webhook"
-pack: "default"
+pack: "jpdemo"
 description: "Sample rule dumping webhook payload to a file."
 enabled: true
 

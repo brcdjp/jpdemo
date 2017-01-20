@@ -18,6 +18,6 @@ parameters:
     type: string
     required: true
   port:
-    type: number
+    type: string
     default: 443
 
