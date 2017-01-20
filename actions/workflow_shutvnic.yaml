@@ -1,0 +1,23 @@
+description: a security demo
+pack: jpdemo
+name: workflow_shutvnic
+enabled: true
+entry_point: "workflows/workflow_shutvnic.yaml"
+runner_type: mistral-v2
+parameters:
+  host:
+    type: string
+    required: true
+  user:
+    type: string
+    required: true
+  password:
+    type: string
+    required: true
+  vmname:
+    type: string
+    required: true
+  port:
+    type: number
+    default: 443
+
