@@ -1,0 +1,18 @@
+---
+name: "security_demo"
+pack: "jpdemo"
+description: "A securit demo rule"
+enabled: true
+trigger:
+  type: "core.st2.webhook"
+  parameters:
+    url: "virus"
+criteria:
+action:
+  ref: "jpdemo.workflow_shutvnic"
+  parameters:
+    host: 172.24.198.247
+    password: password
+    vmname: '{{ trigger.body.vmname }}'
+    user: root
+
