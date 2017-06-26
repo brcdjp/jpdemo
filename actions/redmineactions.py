@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from st2actions.runners.pythonrunner import Action
 import datetime
-from redmine import Redmine
+from redminelib import Redmine
 class NewTicket(Action):
     def run(self, subject, description):
         rm = Redmine('http://172.24.199.111/', key='6cd5f81bd01aeb6a31d2504d54366a215f34273e')
