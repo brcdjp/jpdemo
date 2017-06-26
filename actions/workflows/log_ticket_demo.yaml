@@ -12,7 +12,7 @@ jpdemo.log_ticket_demo:
       action: jpdemo.cli
       input:
         host: <% $.host %>
-        cmd: "copy running-config scp://root:password@172.24.198.212//var/www/html/test/<% $.subject %>"
+        cmd: "copy running-config scp://root:password@172.24.198.80//var/www/html/test/<% $.subject %>"
       on-success:
         - sh_cmd
       on-error:
